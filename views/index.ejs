@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "arial";
+        }
+
+        .main {
+            width: 100%;
+            min-height: 100vh;
+            background: rgb(4,102,125);
+            background: linear-gradient(74deg, rgba(4,102,125,1) 26%, rgba(103,208,233,1) 46%, rgba(93,38,233,1) 73%);
+            padding: 10px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .todoList {
+            width: 100%;
+            max-width: 450px;
+            background: darkgray;
+            margin: 100px auto 20px;
+            padding: 40px 30px 30px;
+            border-radius: 10px;
+        }
+
+        .todoList h2 {
+            color: #002765;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        a img {
+            width: 30px;
+            margin-left: 10px;
+            margin: 7px 0 4px 28px;
+        }
+
+        .form {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #edeef0;
+            border-radius: 30px;
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            padding: 10px;
+        }
+
+
+        button {
+            border: none;
+            outline: none;
+            padding: 12px 50px;
+            background: #ff5945;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 40px;
+/*            margin-bottom: 20px;*/
+}
+ table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+/*             border-radius: 20px; */
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #edeef0;
+            color: black;
+            font-weight: bold;
+        }
+
+        td {
+            border-bottom: 1px solid #edeef0;
+        }
+
+        tr:hover {
+            background-color: gray;
+        }
+
+        .table img {
+            width: 24px;
+            cursor: pointer;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="main ">
+        <div class="todoList">
+            <h2>To-Do List</h2>
+            <form action="/insertData" method="post" class="">
+                <div class="form">
+                    <input type="text" name="task" placeholder="Add Your Task">
+                    <input type="hidden" name="id" value="<%= Date.now()%>">
+
+                    <button type="submit">Add</button>
+                </div>
+            </form>
+            <table class="table" border="0">
+                <thead>
+                    <tr>
+                        <th style="width:70%">Task</th>
+                        <th style="width:15%">Delete</th>
+                        <th style="width:15%">Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% lists.map((val) => { %>
+                        <tr>
+                            <td style="padding-left: 20px;">
+                                <%= val.task %>
+                            </td>
+                            <td>
+                                <a href="/deleteData/<%= val.id %>"><img src="/images/bin.png" alt="Delete"></a>
+                            </td>
+                            <td>
+                                <a href="/editData/<%= val.id %>"><img src="/images/pen.png" alt="Edit"></a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </section>
+</body>
+
+</html>
